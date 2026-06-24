@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа курьером | Официальный партнёр</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #fff; line-height: 1.6; }
+        
+        :root { --yellow: #FFD600; --yellow-dark: #E6C200; --black: #0a0a0a; }
+        
+        .hero { 
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); 
+            padding: 80px 20px; 
+            text-align: center; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,214,0,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; line-height: 1.2; }
+        .hero h1 span { color: var(--yellow); }
+        .hero-subtitle { font-size: 1.5rem; color: #ccc; margin-bottom: 40px; }
+        .hero-income { 
+            display: inline-block; 
+            background: var(--yellow); 
+            color: #000; 
+            padding: 20px 40px; 
+            border-radius: 16px; 
+            font-size: 1.8rem; 
+            font-weight: 900; 
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(255,214,0,0.3);
+        }
+        .cta-btn { 
+            display: inline-block; 
+            background: var(--yellow); 
+            color: #000; 
+            padding: 18px 50px; 
+            border-radius: 50px; 
+            font-size: 1.2rem; 
+            font-weight: 700; 
+            text-decoration: none; 
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255,214,0,0.4); }
+        
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; font-weight: 900; text-align: center; margin-bottom: 60px; }
+        .section-title span { color: var(--yellow); }
+        
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .benefit-card { 
+            background: linear-gradient(145deg, #1a1a1a, #111); 
+            border-radius: 20px; 
+            padding: 40px 30px; 
+            text-align: center; 
+            border: 1px solid #222;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .benefit-card:hover { transform: translateY(-5px); border-color: var(--yellow); }
+        .benefit-icon { 
+            width: 80px; 
+            height: 80px; 
+            background: var(--yellow); 
+            border-radius: 20px; 
+            margin: 0 auto 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2rem;
+        }
+        .benefit-card h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--yellow); }
+        .benefit-card p { color: #aaa; font-size: 0.95rem; }
+        
+        .job-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .job-card { 
+            background: #111; 
+            border-radius: 24px; 
+            overflow: hidden; 
+            border: 2px solid #222;
+            transition: all 0.3s;
+        }
+        .job-card:hover { border-color: var(--yellow); transform: scale(1.02); }
+        .job-card-header { 
+            background: linear-gradient(135deg, var(--yellow), var(--yellow-dark)); 
+            padding: 30px; 
+            color: #000; 
+        }
+        .job-card-header h3 { font-size: 1.5rem; font-weight: 900; }
+        .job-card-body { padding: 30px; }
+        .job-income { font-size: 2rem; font-weight: 900; color: var(--yellow); margin-bottom: 15px; }
+        .job-features { list-style: none; }
+        .job-features li { padding: 8px 0; color: #ccc; padding-left: 25px; position: relative; }
+        .job-features li::before { content: '✓'; position: absolute; left: 0; color: var(--yellow); font-weight: 900; }
+        .popular-tag { 
+            display: inline-block; 
+            background: #ff4444; 
+            color: #fff; 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            margin-top: 10px;
+        }
+        
+        .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .req-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            background: #111; 
+            padding: 25px; 
+            border-radius: 16px; 
+            border: 1px solid #222;
+        }
+        .req-icon { 
+            width: 60px; 
+            height: 60px; 
+            background: rgba(255,214,0,0.1); 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            flex-shrink: 0;
+        }
+        .req-text h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .req-text p { color: #888; font-size: 0.9rem; }
+        
+        .process-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .step { 
+            flex: 1; 
+            min-width: 200px; 
+            max-width: 250px; 
+            text-align: center; 
+            position: relative; 
+        }
+        .step-num { 
+            width: 60px; 
+            height: 60px; 
+            background: var(--yellow); 
+            color: #000; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            font-weight: 900; 
+            margin: 0 auto 20px;
+        }
+        .step h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .step p { color: #888; font-size: 0.9rem; }
+        
+        .stats { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 30px; 
+            margin: 60px 0; 
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 3rem; font-weight: 900; color: var(--yellow); }
+        .stat-label { color: #888; margin-top: 10px; }
+        
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .review-card { 
+            background: #111; 
+            border-radius: 20px; 
+            padding: 30px; 
+            border: 1px solid #222;
+        }
+        .review-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .review-avatar { 
+            width: 50px; 
+            height: 50px; 
+            background: linear-gradient(135deg, var(--yellow), orange); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 900; 
+            color: #000;
+        }
+        .review-meta h4 { font-size: 1.1rem; }
+        .review-meta span { color: #888; font-size: 0.85rem; }
+        .review-stars { color: var(--yellow); margin-bottom: 15px; }
+        .review-text { color: #ccc; font-style: italic; line-height: 1.8; }
+        .review-income { margin-top: 15px; padding-top: 15px; border-top: 1px solid #222; color: var(--yellow); font-weight: 700; }
+        
+        .footer-cta { 
+            background: linear-gradient(135deg, #1a1a1a, #0a0a0a); 
+            padding: 100px 20px; 
+            text-align: center; 
+            border-top: 1px solid #222;
+        }
+        .footer-cta h2 { font-size: 2.5rem; margin-bottom: 30px; }
+        .footer-cta p { color: #888; margin-bottom: 40px; font-size: 1.2rem; }
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            border-top: 1px solid #222;
+            z-index: 1000;
+        }
+        .sticky-cta .cta-btn { padding: 14px 40px; font-size: 1rem; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-income { font-size: 1.3rem; }
+            .section-title { font-size: 1.8rem; }
+            .sticky-cta { flex-direction: column; }
+            .sticky-cta .cta-btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Станьте курьером<br>и получайте до <span>260 000 ₽</span> в месяц*</h1>
+        <p class="hero-subtitle">Официальный партнёр Яндекс Еда • Без опыта • Быстрое подключение</p>
+        <div class="hero-income">💰 Рассчитайте ваш доход</div>
+        <br>
+        <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn">Начать зарабатывать →</a>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section">
+        <h2 class="section-title">С заботой <span>о вас</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Быстрое подключение</h3>
+                <p>Доставьте первый заказ сразу после регистрации</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💵</div>
+                <h3>Выплаты каждый день</h3>
+                <p>Удобно, если нужно быстро на что-то накопить</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🚲</div>
+                <h3>Скидки на аренду</h3>
+                <p>Арендуйте самокаты и велосипеды со скидкой у партнёров</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🍔</div>
+                <h3>Скидка на еду</h3>
+                <p>Заказывайте обеды в ресторанах-партнёрах</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">➕</div>
+                <h3>Доплата за тяжёлые заказы</h3>
+                <p>Для заказов от 10 кг. Бесплатное такси, если не помещается в сумку</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎁</div>
+                <h3>Чаевые и бонусы</h3>
+                <p>Все чаевые от клиентов — ваши. Бонусы за приглашённых курьеров</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Страхование</h3>
+                <p>Страховка во время доставок и после них</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📅</div>
+                <h3>Гибкое расписание</h3>
+                <p>Доставляйте заказы когда удобно. Район тоже выбираете вы</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Types -->
+    <section class="section" style="background: #111;">
+        <h2 class="section-title">Актуальные <span>вакансии</span></h2>
+        <div class="job-types">
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>🚶 Пеший курьер</h3>
+                    <span class="popular-tag">🔥 Популярно</span>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-income">300 ₽/час</div>
+                    <ul class="job-features">
+                        <li>Минимальные стартовые затраты</li>
+                        <li>Идеально для новичков</li>
+                        <li>Короткие дистанции</li>
+                        <li>Подходит для подработки</li>
+                    </ul>
+                    <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="margin-top: 20px; display: block; text-align: center;">Выбрать пешую доставку</a>
+                </div>
+            </div>
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>🚴 Велокурьер</h3>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-income">360 ₽/час</div>
+                    <ul class="job-features">
+                        <li>Оптимальный баланс скорости и дохода</li>
+                        <li>Не зависит от трафика</li>
+                        <li>Можно совмещать с фитнесом</li>
+                        <li>Больше заказов в час</li>
+                    </ul>
+                    <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="margin-top: 20px; display: block; text-align: center;">Выбрать вело доставку</a>
+                </div>
+            </div>
+            <div class="job-card">
+                <div class="job-card-header">
+                    <h3>🚗 Водитель-курьер</h3>
+                </div>
+                <div class="job-card-body">
+                    <div class="job-income">390 ₽/час</div>
+                    <ul class="job-features">
+                        <li>Больший радиус доставки</li>
+                        <li>Комфорт в любую погоду</li>
+                        <li>Длинные расстояния, большие заказы</li>
+                        <li>Меньше физической нагрузки</li>
+                    </ul>
+                    <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="margin-top: 20px; display: block; text-align: center;">Выбрать авто доставку</a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; color: #888;">Можно менять способ доставки в любой момент</p>
+    </section>
+
+    <!-- Requirements -->
+    <section class="section">
+        <h2 class="section-title">Требования <span>к курьерам</span></h2>
+        <div class="req-grid">
+            <div class="req-item">
+                <div class="req-icon">🆔</div>
+                <div class="req-text">
+                    <h4>Паспорт или ID</h4>
+                    <p>Обязательно для оформления</p>
+                </div>
+            </div>
+            <div class="req-item">
+                <div class="req-icon">📱</div>
+                <div class="req-text">
+                    <h4>Смартфон</h4>
+                    <p>Android 7.0+ или iPhone</p>
+                </div>
+            </div>
+            <div class="req-item">
+                <div class="req-icon">🎂</div>
+                <div class="req-text">
+                    <h4>Возраст от 16 лет</h4>
+                    <p>С 16 лет — с согласия родителей</p>
+                </div>
+            </div>
+            <div class="req-item">
+                <div class="req-icon">⏰</div>
+                <div class="req-text">
+                    <h4>Наличие времени</h4>
+                    <p>Рекомендуется 3-4 раза в неделю</p>
+                </div>
+            </div>
+            <div class="req-item">
+                <div class="req-icon">🚲</div>
+                <div class="req-text">
+                    <h4>Велосипед (не обязательно)</h4>
+                    <p>Есть скидки на аренду у партнёров</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn">Проверить подходите ли вы →</a>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" style="background: #111;">
+        <h2 class="section-title">Процесс <span>оформления</span></h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h4>Регистрация</h4>
+                <p>Простая регистрация в приложении</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h4>Обучение</h4>
+                <p>Изучение материалов и памятки</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h4>Запись на слот</h4>
+                <p>Запись через Telegram бот</p>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <h4>Оформление</h4>
+                <p>Визит в Курьерский Центр</p>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <h4>Первый заработок</h4>
+                <p>Выход на доставку и доход</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-num">24ч</div>
+                <div class="stat-label">Среднее время до начала работы</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">300₽</div>
+                <div class="stat-label">Средняя зарплата в час</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">30K+</div>
+                <div class="stat-label">Активных курьеров</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="font-size: 1.3rem; padding: 22px 60px;">Начать оформление →</a>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section">
+        <h2 class="section-title">Отзывы <span>курьеров</span></h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">А</div>
+                    <div class="review-meta">
+                        <h4>Алексей, 28 лет</h4>
+                        <span>Москва • Стаж: 7 мес.</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Устроился через неделю после переезда в Москву. Документы проверили быстро, куртку и сумку выдали в пункте. Зарабатываю норм, деньги на карту каждый день капают."</p>
+                <div class="review-income">Заработок: 2500-6000 ₽/день</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">Т</div>
+                    <div class="review-meta">
+                        <h4>Тимур, 35 лет</h4>
+                        <span>Москва • Стаж: 12 мес.</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Работа для тех, кто не боится работать. Никто не держит за руку, сам отвечаешь за свой заработок. В сумме за неделю выходит стабильно высоко."</p>
+                <div class="review-income">Заработок: 2500-5000 ₽/день</div>
+            </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">А</div>
+                    <div class="review-meta">
+                        <h4>Алина, 26 лет</h4>
+                        <span>Москва • Стаж: 9 мес.</span>
+                    </div>
+                </div>
+                <div class="review-stars">★★★★☆</div>
+                <p class="review-text">"Лучшая работа для сов! Люблю ночные смены — машин мало, заказов много, повышающие коэффициенты. Платят стабильно на следующий день."</p>
+                <div class="review-income">Заработок: 4000-5000 ₽/день</div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="font-size: 1.2rem;">Присоединиться к команде →</a>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <h2>Готовы начать зарабатывать?</h2>
+        <p>Присоединяйтесь к 30 000+ курьеров уже сегодня</p>
+        <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn" style="font-size: 1.4rem; padding: 24px 70px;">Стать курьером →</a>
+        <div style="margin-top: 40px; color: #555; font-size: 0.9rem;">
+            <p>4.8★ Средний рейтинг • 94% рекомендуют друзьям • 21 600₽ средний заработок в неделю</p>
+        </div>
+    </section>
+
+    <!-- Sticky Bottom CTA -->
+    <div class="sticky-cta">
+        <a href="https://reg.eda.yandex.ru/?advertisement_campaign=forms_for_agents&user_invite_code=4a28f395f9e04ce9b0120bb91b960400&utm_content=blank" class="cta-btn">Стать курьером</a>
+    </div>
+
+    <div style="height: 80px;"></div>
+
+</body>
+</html>
